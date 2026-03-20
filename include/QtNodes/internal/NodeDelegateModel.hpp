@@ -12,6 +12,7 @@
 #include "NodeData.hpp"
 #include "NodeStyle.hpp"
 #include "Serializable.hpp"
+#include <QtGui/QColor>
 
 namespace QtNodes {
 
@@ -133,6 +134,10 @@ public:
 
     virtual bool resizable() const { return false; }
 
+    bool frozen() const { return _frozen; }
+
+    void setFrozenState(bool state) { _frozen = state; }
+
 public Q_SLOTS:
     virtual void inputConnectionCreated(ConnectionId const &) {}
     virtual void inputConnectionDeleted(ConnectionId const &) {}
@@ -185,6 +190,8 @@ Q_SIGNALS:
 
 private:
     NodeStyle _nodeStyle;
+
+    bool _frozen{false};
 
     NodeValidationState _nodeValidationState;
 
